@@ -12,15 +12,17 @@ export const addTodoLoading = () => {
 };
 
 
-export const addTodoSuccess = () => {
+export const addTodoSuccess = (data) => {
     return {
         type: ADD_TODO_SUCCESS,
+        payload: data,
     }
 };
 
-export const addTodoError = () => {
+export const addTodoError = (err) => {
     return {
         type: ADD_TODO_ERROR,
+        payload: err,
     }
 };
 
