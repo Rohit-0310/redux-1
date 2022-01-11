@@ -1,14 +1,37 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { addTodoError, addTodoLoading, addTodoSuccess } from "../store/actions";
+import { addTodoError, addTodoLoading, addTodoSuccess, getTodoLoading } from "../store/actions";
 
 
 export const Todos = () => {
-const [text, setText] = useState("")
-const todos = useSelector((state)=>state)
-const dispatch = useDispatch();
-    return (
+    const [text, setText] = useState("")
+    const [loading, todos, error] = useSelector((state)=>({
+        loading: state.loading,
+        todos: state.todos,
+        error: state.error,
+    }));
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getTodos();
+    }, [])
+
+    async function getTodos(){
+        try {
+            dispatch(getTodoLoading())
+        }
+    }
+
+
+
+
+        return loading ? (
+        <div>Loading....</div>
+        ) : error ? (
+            <div>Something Went Wrong!</div>
+        ) : (
+
         <div>
             <input
              value={text}
@@ -21,17 +44,30 @@ const dispatch = useDispatch();
                  dispatch(addTodoLoading())
                  fetch("http:/localhost:3001/todos",{
                      method: "POST",
+                     headers : {
+                         "Content-Type": "application/json",
+                     },
                      body: JSON.stringify({ status: false, title: text}),
                  })
                  .then((d) => d.json())
                  .then((res) =>{
+                     // success
                      dispatch(addTodoSuccess(res));
                  })
                  .catch((err)=>{
+                     //    error
                      dispatch(addTodoError(err))                     ;
-                 })
-             }}>Add Todo</button>
-             {todos.map}
+                 });
+             };
+             return loading ? (
+                 <div>Loading....</div>
+             ) : error ? (
+                 <div></div>
+             )
+             }>Add Todo</button>
+             {todos.map((e)=>(
+                 <div>{e.title}</div>
+             ))}
         </div>
     );
 };

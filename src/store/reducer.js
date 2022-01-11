@@ -25,7 +25,7 @@ export const reducer = (state = init, {type, payload}) => {
             case ADD_TODO_SUCCESS:
                 return {
                     ...state,
-                    todos: [...state.todos, payload],,
+                    todos: [...state.todos, payload],
                     loading: false
                 }
 
