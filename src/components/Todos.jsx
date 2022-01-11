@@ -1,8 +1,7 @@
 import { useState } from "react"
 
 export const Todos = () => {
-
-    const [text, setText] = useState("")
+const [text, setText] = useState("")
     return (
         <div>
             <input

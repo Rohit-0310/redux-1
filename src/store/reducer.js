@@ -2,7 +2,7 @@ import { ADD_TODO } from "./actionTypes";
 
 
  
- const init = {counter: 10}
+ const init = {counter: 0}
 
 
 export const reducer = (state = init, {type, payload}) => {
