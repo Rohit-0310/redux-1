@@ -1,5 +1,4 @@
 import {
-
     addTodoError,
     addTodoLoading,
     addTodoSucces,
@@ -7,7 +6,9 @@ import {
     getTodoLoading,
     getTodoSuccess,
     removeTodo,
-} from "../store/actions";
+} from "../features/Todos/actions";
+
+
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";

@@ -2,11 +2,6 @@
   "todos": [
     {
       "status": false,
-      "title": "Learn React",
-      "id": 1
-    },
-    {
-      "status": false,
       "title": "Learn Vue",
       "id": 2
     },
@@ -23,7 +18,7 @@
     {
       "status": false,
       "title": "Apple",
-      "id": 5
+      "id": 7
     }
   ]
 }
