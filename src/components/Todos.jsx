@@ -18,7 +18,9 @@ export const Todos = () => {
     const dispatch = useDispatch();
 
     
-
+    useEffect(() => {
+        fetch("http:/localhost:3001/todos").then((d) => d.json())
+    },[])
 
 
     const addTodo = () => {

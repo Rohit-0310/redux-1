@@ -1,4 +1,5 @@
-import { ADD_TODO, 
+import { 
+    ADD_TODO, 
     ADD_TODO_ERROR, 
     ADD_TODO_LOADING, 
     ADD_TODO_SUCCESS, 
@@ -42,19 +43,3 @@ export const removeTodo = (id) => ({
 
 
 //get
-
-
-export const getTodoSuccess = (data) => {
-    return {
-        type: GET_TODO_SUCCESS,
-        payload: data,
-    }
-};
-
-
-export const getTodoLoading = () => {
-    return {
-        type: GET_TODO_LOADING,
-    }
-};
-
