@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { addTodoError, addTodoLoading, addTodoSuccess, getTodoLoading } from "../store/actions";
+import { addTodoError, 
+         addTodoLoading, 
+         addTodoSuccess, 
+         getTodoLoading } from "../store/actions";
+
 
 
 export const Todos = () => {
@@ -13,19 +17,31 @@ export const Todos = () => {
     }));
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        getTodos();
-    }, [])
-
-    async function getTodos(){
-        try {
-            dispatch(getTodoLoading())
-        }
-    }
+    
 
 
 
+    const addTodo = () => {
+        dispatch(addTodoLoading())
+             fetch("http:/localhost:3001/todos",{
+                 method: "POST",
+                 headers : {
+                     "Content-Type": "application/json",
+                 },
+                 body: JSON.stringify({ status: false, title: text}),
+             })
+             .then((d) => d.json())
+                 .then((res) =>{
+                     // success
+                     dispatch(addTodoSuccess(res));
+                 })
+                 .catch((err)=>{
+                     //    error
+                     dispatch(addTodoError(err))                     ;
+                 });
+             };
 
+    
         return loading ? (
         <div>Loading....</div>
         ) : error ? (
