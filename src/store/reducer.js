@@ -14,29 +14,26 @@ export const reducer = (state = init, {type, payload}) => {
             return{
                 ...state,
                 todos: [...state.todos, payload],
-            };
-
-            case ADD_TODO_LOADING:
-                return {
-                    ...state,
-                    loading: true
-                }
-
-            case ADD_TODO_SUCCESS:
-                return {
-                    ...state,
-                    todos: [...state.todos, payload],
-                    loading: false
-                }
-
-            case ADD_TODO_ERROR: {
-                return {
-                    ...state,
-                    loading: false,
-                    error: true,
-                }
+        };
+        case ADD_TODO_LOADING:
+            return {
+                ...state,
+                loading: true
             }
-            default:
-                return state;            
+        case ADD_TODO_SUCCESS:
+            return {
+                ...state,
+                todos: [...state.todos, payload],
+                loading: false
+            }
+        case ADD_TODO_ERROR: {
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            }
+        }
+        default:
+            return state;            
     }
 };
