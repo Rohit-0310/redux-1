@@ -8,7 +8,7 @@ import {
     REMOVE_TODO } from "./actionTypes";
 
 
-export const addTodo = (data) => ({
+    export const addTodo = (data) => ({
     type: ADD_TODO,
     payload: data,
 });
@@ -18,7 +18,6 @@ export const addTodoLoading = () => {
         type: ADD_TODO_LOADING,
     }
 };
-
 
 export const addTodoSuccess = (data) => {
     return {
@@ -35,6 +34,23 @@ export const addTodoError = (err) => {
 };
 
 
+//get
+
+
+export const getTodoSuccess = (data) => {
+    return {
+        type: GET_TODO_SUCCESS,
+        payload: data,
+    }
+};
+
+
+export const getTodoLoading = () => {
+    return {
+        type: GET_TODO_LOADING,
+    }
+};
+
 export const removeTodo = (id) => ({
     type: REMOVE_TODO,
     payload: id,
@@ -42,4 +58,5 @@ export const removeTodo = (id) => ({
 
 
 
-//get
+
+
