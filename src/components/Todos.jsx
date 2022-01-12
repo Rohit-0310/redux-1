@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { addTodoError, 
+import { addTodo,
+         addTodoError, 
          addTodoLoading, 
-         addTodoSuccess, 
+         addTodoSuccess,
          getTodoLoading } from "../store/actions";
 
 
@@ -19,12 +20,25 @@ export const Todos = () => {
 
     
     useEffect(() => {
-        fetch("http:/localhost:3001/todos").then((d) => d.json())
+        
+        getTodos();
     },[])
+
+    async function getTodos(){
+        try {
+            dispatch(addTodoLoading())
+            const data = await fetch("http:/localhost:3001/todos").then((d) =>
+             d.json()
+             );
+            dispatch(addTodoSuccess(data));
+        } catch(err) {
+            dispatch(addTodoSuccess(err));
+        }
+    }
 
 
     const addTodo = () => {
-        dispatch(addTodoLoading())
+            dispatch(addTodoLoading())
              fetch("http:/localhost:3001/todos",{
                  method: "POST",
                  headers : {
@@ -36,12 +50,13 @@ export const Todos = () => {
                  .then((res) =>{
                      // success
                      dispatch(addTodoSuccess(res));
+                     getTodos();
                  })
                  .catch((err)=>{
                      //    error
                      dispatch(addTodoError(err))                     ;
                  });
-             };
+        };
 
     
         return loading ? (
@@ -76,8 +91,23 @@ export const Todos = () => {
                      //    error
                      dispatch(addTodoError(err))                     ;
                  });
-             };
-             return loading ? (
+             }}
+             >
+                 Add Todo
+             </button>
+             {todos.map((e)=>(
+                 <div>{e.title}</div>
+             ))}
+        </div>
+    );
+};
+
+
+
+
+
+/*
+return loading ? (
                  <div>Loading....</div>
              ) : error ? (
                  <div></div>
@@ -86,6 +116,4 @@ export const Todos = () => {
              {todos.map((e)=>(
                  <div>{e.title}</div>
              ))}
-        </div>
-    );
-};
+*/
