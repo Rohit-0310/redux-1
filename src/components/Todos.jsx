@@ -74,29 +74,31 @@ export const Todos = () => {
              />
 
              <button onClick={() => {
-                 dispatch(addTodoLoading())
-                 fetch("http:/localhost:3001/todos",{
-                     method: "POST",
-                     headers : {
-                         "Content-Type": "application/json",
-                     },
-                     body: JSON.stringify({ status: false, title: text}),
-                 })
-                 .then((d) => d.json())
-                 .then((res) =>{
-                     // success
-                     dispatch(addTodoSuccess(res));
-                 })
-                 .catch((err)=>{
-                     //    error
-                     dispatch(addTodoError(err))                     ;
-                 });
-             }}
+                dispatch(addTodoLoading())
+                fetch("http:/localhost:3001/todos",{
+                    method: "POST",
+                    headers : {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ status: false, title: text}),
+                })
+                .then((d) => d.json())
+                .then((res) =>{
+                    // success
+                    dispatch(addTodoSuccess(res));
+                })
+                .catch((err)=>{
+                    //    error
+                    dispatch(addTodoError(err))                     ;
+                });
+            }}
              >
                  Add Todo
              </button>
              {todos.map((e)=>(
-                 <div>{e.title}</div>
+                <div>
+                     {e.title} - {e.status ? "Done": "Not Done"}
+                </div>
              ))}
         </div>
     );
