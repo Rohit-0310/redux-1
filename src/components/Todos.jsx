@@ -74,7 +74,23 @@ export const Todos = () => {
              />
 
              <button onClick={() => {
-                dispatch(addTodoLoading())
+                addTodo()
+            }}
+             >
+                 Add Todo
+             </button>
+             {todos.map((e)=>(
+                <div>
+                     {e.title} - {e.status ? "Done": "Not Done"}
+                </div>
+             ))}
+        </div>
+    );
+};
+
+
+/*
+dispatch(addTodoLoading())
                 fetch("http:/localhost:3001/todos",{
                     method: "POST",
                     headers : {
@@ -91,21 +107,7 @@ export const Todos = () => {
                     //    error
                     dispatch(addTodoError(err))                     ;
                 });
-            }}
-             >
-                 Add Todo
-             </button>
-             {todos.map((e)=>(
-                <div>
-                     {e.title} - {e.status ? "Done": "Not Done"}
-                </div>
-             ))}
-        </div>
-    );
-};
-
-
-
+*/
 
 
 /*
